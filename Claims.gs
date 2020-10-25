@@ -1,43 +1,4 @@
-function claimCycle() {
-  var range = staffClaimInfo.getRange("D6:D13");
-  var range2 = staffClaimInfo.getRange("E6:E13");
-  range2.setValues(range.getValues());  
-  range = staffClaimInfo.getRange("D15:D24");
-  range2 = staffClaimInfo.getRange("E15:E24");
-  range2.setValues(range.getValues());  
-  range = staffClaimInfo.getRange("D24:D35");
-  range2 = staffClaimInfo.getRange("E24:E35");
-  range2.setValues(range.getValues());  
-  range = staffClaimInfo.getRange("D33:D46");
-  range2 = staffClaimInfo.getRange("E33:E46");
-  range2.setValues(range.getValues());  
-  range = staffClaimInfo.getRange("D42:D57");
-  range2 = staffClaimInfo.getRange("E42:E57");
-  range2.setValues(range.getValues());  
- }
-
-function playerListRefresh(){
-  var sheet = ss.getSheetByName('playerList')
-  sheet.getRange(1,1).setValue("Updating...");
-  Utilities.sleep(10000);
-  playerListPaste();
-}
-
-function playerListPaste(){  
-  var sheet = ss.getSheetByName('playerList')
-  sheet.getRange(1,1).setValue('=IMPORTHTML("https://www.trackyserver.com/pages/server_playerslist.php?server_id=219362", "table",2)');
-}
-
-
-function clearNewClaims(){
-  var range = staffClaimInfo.getRange("D6:D13");
-  range = staffClaimInfo.getRange("D17:D24").clearContent(); 
-  range = staffClaimInfo.getRange("D28:D35").clearContent();  
-  range = staffClaimInfo.getRange("D39:D46").clearContent();
-  range = staffClaimInfo.getRange("D50:D57").clearContent();  
-}
-
-function claimCycle(){
+function claimLog(){
   const TEAMS = {
     7: {CELL: "M19", NAMESTART:  28}, // Yoshi
     10: {CELL: "M21", NAMESTART: 50}, // Ross
@@ -59,7 +20,7 @@ function claimCycle(){
     {
       newValues = newValues.concat(values[i]);
     }
-    var values2 = staffClaimInfo.getRange(TEAMS[teamCounter].NAMESTART,7,8,1).getValues();
+    var values2 = staffClaimInfo.getRange(TEAMS[teamCounter].NAMESTART,6,8,1).getValues();
     for(var i = 0; i < values2.length; i++)
     {
       newValues2 = newValues2.concat(values2[i]);

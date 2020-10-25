@@ -1,6 +1,7 @@
 function claimCount(response){
   staffClaimInfo.getRange(27,13).setValue(response)
 }
+
 // Add new staff application. Called by getNewAppInfo.
 function addNewStaffApp(response){
   var yIndex = 73;
@@ -120,10 +121,11 @@ function acceptStaff(args){
 
 // Remove Application. Called by acceptStaff and addToDemoList
 function removeApp(appIndex){
-  staffInfoB.getRange(appIndex[0], 5, 1, 3).clear({contentsOnly: true});
-  staffInfoB.getRange(appIndex[0], 11).clear({contentsOnly: true});
-  staffInfoB.getRange(appIndex[0], 16).clear({contentsOnly: true});
-  staffInfoB.getRange(appIndex[0], 21, 1, 3).clear({contentsOnly: true});
+  Logger.log(appIndex)
+  staffInfoB.getRange(appIndex, 5, 1, 3).clear({contentsOnly: true});
+  staffInfoB.getRange(appIndex, 11).clear({contentsOnly: true});
+  staffInfoB.getRange(appIndex, 16).clear({contentsOnly: true});
+  staffInfoB.getRange(appIndex, 21, 1, 3).clear({contentsOnly: true});
   appSort();
 }
 

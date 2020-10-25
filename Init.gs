@@ -5,7 +5,6 @@ var rankChangeList = ss.getSheetByName('Promotion-Demotion List');
 var meetingList = ss.getSheetByName('Staff Meeting Attendance');
 var staffClaimInfo = ss.getSheetByName("Staff Claim Information"); 
 var sheetClaims = ss.getSheetByName("Staff Claims List"); 
-var test = ss.getSheetByName('Sheet9')
 var ui = SpreadsheetApp.getUi();
 
 
@@ -39,8 +38,6 @@ function onOpen() {
       
      .addSubMenu(ui.createMenu('Claims')
        .addItem('Change Minimum Claim Count','claimCountInfo')
-       .addItem('Claim Cycle','claimCycle')
-       .addItem('Clear New Claims','clearNewClaims')
        .addItem('Log Weekly Claims','claimLog'))
       
   .addToUi();
