@@ -7,26 +7,15 @@ function playerList(query, options) {
   return playerListAdvanced("https://ratty.pythonanywhere.com/time", null, options, includeXPath_, defaultTransform_);
 }
 
-function staffClaims(query, options) {
-  return staffClaimsAdvanced("https://ratty.pythonanywhere.com/for_nerd_bob", null, options, includeXPath_, defaultTransform_);
-}
-
 function playerListAdvanced(url, query, options, includeFunc, transformFunc) {
   var jsondata = UrlFetchApp.fetch(url);
   var object = JSON.parse(jsondata.getContentText());
   return parseJSONObject_(object, query, options, includeFunc, transformFunc);
 }
-  function staffClaimsAdvanced(url, query, options, includeFunc, transformFunc) {
-  var jsondata = UrlFetchApp.fetch(url);
-  var object   = JSON.parse(jsondata.getContentText());
-  return parseJSONObject2_(object, query, options, includeFunc, transformFunc);
-}
 
 function URLEncode(value) {
   return encodeURIComponent(value.toString());  
 }
-
-
 
 function parseJSONObject_(object, query, options, includeFunc, transformFunc) {
   var headers = new Array();
@@ -45,26 +34,6 @@ function parseJSONObject_(object, query, options, includeFunc, transformFunc) {
   var rownum = Object.keys(data).length;
   sheet1.getRange(1,1,120,2).clearContent()
   sheet1.getRange(1,1,rownum,2).setValues(data);
-  return hasOption_(options, "noHeaders") ? (data.length > 1 ? data.slice(1) : new Array()) : data;
-}
-
-function parseJSONObject2_(object, query, options, includeFunc, transformFunc) {
-  var headers = new Array();
-  var data    = new Array();
-  if (query && !Array.isArray(query) && query.toString().indexOf(",") != -1) {
-    query = query.toString().split(",");
-  }
-  
-  if (options) {
-    options = options.toString().split(",");
-  }
-    
-  parseData_(headers, data, "", 1, object, query, options, includeFunc);
-  parseHeaders_(headers, data);
-  transformData_(data, options, transformFunc);
-  var rownum = Object.keys(data).length;
-  sheet2.getRange(1,1,40,4).clearContent()
-  sheet2.getRange(1,1,rownum,4).setValues(data);
   return hasOption_(options, "noHeaders") ? (data.length > 1 ? data.slice(1) : new Array()) : data;
 }
 
